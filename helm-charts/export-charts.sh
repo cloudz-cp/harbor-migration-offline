@@ -23,6 +23,7 @@ function addHelmRepo() {
   else
     echo "Skip already added repo: $proj"
   fi
+  helm repo update $proj
   set -eo pipefail
 }
 
@@ -33,9 +34,10 @@ function getCharts() {
 }
 
 function getVersions() {
-  chart=$1
-  cmd=$(helm search repo "$chart" -l -o json)
-  echo $cmd | jq '.[] | .version' | sed 's/"//g'
+  proj=$1
+  chart=$2
+  cmd=$(helm search repo $proj/$chart -l -o json)
+  echo $cmd | jq ".[] | select(.name==\"$proj/$chart\") | .version" | sed 's/"//g'
 }
 
 function download() {
@@ -61,7 +63,7 @@ function downloadCharts() {
     charts=($(getCharts "$proj"))
     for c in $charts
     do
-      versions=($(getVersions $c))
+      versions=($(getVersions $proj $c))
       for v in $versions
       do
         echo "$c-$v.tgz" >> $proj/targets.txt
