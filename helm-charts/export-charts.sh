@@ -15,9 +15,9 @@ function addHelmRepo() {
   helm repo ls -o json | jq '.[] | .name' | sed 's/"//g' | grep -x -q "$proj"
   if [ $? -eq 1 ]
   then
-    echo "Add new repo: https://v2-zcr.cloudzcp.io/chartrepo/$proj"
+    echo "Add new repo: https://$DOMAIN/chartrepo/$proj"
     set -eo pipefail
-    helm repo add $proj "https://v2-zcr.cloudzcp.io/chartrepo/$proj" \
+    helm repo add $proj "https://$DOMAIN/chartrepo/$proj" \
       --username $USER \
       --password $PASSWORD
   else
