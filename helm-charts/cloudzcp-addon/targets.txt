@@ -1,0 +1,7 @@
+fluent-bit-0.15.8.tgz
+fluentd-0.2.7.tgz
+ingress-nginx-4.0.17.tgz
+ingress-nginx-3.27.0.tgz
+prometheus-13.8.0.tgz
+prometheus-blackbox-exporter-4.10.2.tgz
+prometheus-k8s-events-exporter-0.1.3.tgz
