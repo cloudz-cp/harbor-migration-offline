@@ -36,7 +36,7 @@ function uploadArchivesByProject() {
   do
     name=$(echo $target | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
     echo "Upload '$proj/download/$name' to $DOMAIN/$proj/$target"
-    skopeo copy docker-archive:$proj/download/$name docker://$DOMAIN/$proj/$target
+    skopeo copy oci-archive:$proj/download/$name docker://$DOMAIN/$proj/$target
   done < $proj/targets.txt
 }
 
