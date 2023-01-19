@@ -45,11 +45,13 @@ function downloadTaggedRepo() {
 
   if [ ! -e $proj/repositories.txt ]
   then
-    pages=$((($(countRepo cloudzcp-public)+99)/100))
+    tmp=`mktemp`
+    pages=$((($(countRepo $proj)+99)/100))
     for i in $(seq 1 $pages)
     do
-      listRepo $proj $i >> $proj/repositories.txt
+      listRepo $proj $i >> $tmp
     done
+    cat $tmp | sort | uniq  > $proj/repositories.txt
   fi
 
   if [ ! -e $proj/targets.txt ]
@@ -65,12 +67,14 @@ function downloadTaggedRepo() {
     done < $proj/repositories.txt
   fi
 
+  touch $proj/targets.txt
+
   while read line
   do
     filename=$(echo $line | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
     if [ -e $proj/download/$filename ]
     then
-      echo "Already downloaded image ($filename)"
+      echo "Already downloaded image: $filename"
       continue
     fi
     echo "Download $DOMAIN/$proj/$line to $proj/download/$filename"
