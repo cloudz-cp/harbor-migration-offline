@@ -78,7 +78,13 @@ function downloadTaggedRepo() {
       continue
     fi
     echo "Download $DOMAIN/$proj/$line to $proj/download/$filename"
+    set +eo pipefail
     skopeo copy -q --dest-compress-format gzip docker://$DOMAIN/$proj/$line docker-archive:$proj/download/$filename:$line
+    if [ $? -ne 0 ]
+    then
+      echo "$line" >> $proj/failed.txt
+    fi
+    set -eo pipefail
   done < $proj/targets.txt
 }
 
