@@ -68,6 +68,7 @@ function downloadTaggedRepo() {
   fi
 
   touch $proj/targets.txt
+  cat /dev/null > $proj/failed.txt
 
   while read line
   do
@@ -79,7 +80,8 @@ function downloadTaggedRepo() {
     fi
     echo "Download $DOMAIN/$proj/$line to $proj/download/$filename"
     set +eo pipefail
-    skopeo copy -q --dest-compress-format gzip docker://$DOMAIN/$proj/$line docker-archive:$proj/download/$filename:$line
+    skopeo copy -q --override-os linux --override-arch amd64 --dest-compress-format gzip \
+      docker://$DOMAIN/$proj/$line docker-archive:$proj/download/$filename:$line
     if [ $? -ne 0 ]
     then
       echo "$line" >> $proj/failed.txt
