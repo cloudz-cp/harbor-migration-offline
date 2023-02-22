@@ -53,6 +53,7 @@ jetstack/cert-manager-controller:v1.11.0
 jetstack/cert-manager-webhook:v1.11.0
 jimmidyson/configmap-reload:v0.5.0
 keycloak-register-event-listener:v2.0.0
+kiali/kiali:v1.63
 koalaman/shellcheck:v0.5.0
 metrics-server/metrics-server:v0.6.2
 oliver006/redis_exporter:v1.27.0
