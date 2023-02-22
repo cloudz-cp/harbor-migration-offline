@@ -24,4 +24,7 @@ cat /tmp/deploy-images.txt >> /tmp/images.txt
 cat /tmp/sts-images.txt >> /tmp/images.txt
 cat /tmp/ds-images.txt >> /tmp/images.txt
 
-cat /tmp/images.txt | sort | uniq > images.txt
+cat /tmp/images.txt | sort | uniq > scrapped.txt
+
+cat scrapped.txt | grep v2-zcr.cloudzcp.io/cloudzcp/ | sed 's/v2-zcr.cloudzcp.io\/cloudzcp\///' > cloudzcp/scrapped.txt
+cat scrapped.txt | grep v2-zcr.cloudzcp.io/cloudzcp-public/ | sed 's/v2-zcr.cloudzcp.io\/cloudzcp-public\///' > cloudzcp-public/scrapped.txt
