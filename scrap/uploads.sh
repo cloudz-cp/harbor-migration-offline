@@ -5,8 +5,9 @@ DOMAIN="tta-registry.gs.cloudzcp.net"
 USER=""
 PASSWORD=""
 
-function loginHarbor() {
-  echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
+function login() {
+#  echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
+  echo $PASSWORD | docker login $DOMAIN -u $USER --password-stdin
 }
 
 function createProjectIfNotExist() {
@@ -28,18 +29,21 @@ function createProjectIfNotExist() {
   fi
 }
 
-function uploadArchivesByProject() {
+function upload() {
   proj=$1
   createProjectIfNotExist $proj
   while read target
   do
-    name=$(echo $target | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
-    echo "Upload '$proj/download/$name' to $DOMAIN/$proj/$target"
-    skopeo copy oci-archive:$proj/download/$name docker://$DOMAIN/$proj/$target
+    tgz=$(echo $target | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
+    echo "Upload '$proj/download/$tgz' to $DOMAIN/$proj/$target"
+#    skopeo copy oci-archive:$proj/download/$tgz docker://$DOMAIN/$proj/$target
+    docker image load --input $proj/download/$tgz
+    docker tag $target $DOMAIN/$proj/$target
+    docker push $DOMAIN/$proj/$target
   done < $proj/targets.txt
 }
 
-loginHarbor
-uploadArchivesByProject "cloudzcp"
-uploadArchivesByProject "cloudzcp-addon"
-uploadArchivesByProject "cloudzcp-public"
+login
+upload "cloudzcp"
+upload "cloudzcp-addon"
+upload "cloudzcp-public"
