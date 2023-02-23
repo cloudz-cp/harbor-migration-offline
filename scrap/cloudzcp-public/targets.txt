@@ -30,7 +30,6 @@ goharbor/harbor-registryctl:v2.6.2
 goharbor/redis-photon:v2.6.2
 goharbor/registry-photon:v2.6.2
 grafana/grafana-image-renderer:latest
-grafana/grafana:9.0.1
 grafana/grafana:9.3.6
 haproxy:2.5.7
 hashicorp/consul-k8s-control-plane:1.0.2
@@ -58,7 +57,6 @@ koalaman/shellcheck:v0.5.0
 metrics-server/metrics-server:v0.6.2
 oliver006/redis_exporter:v1.27.0
 prom/prometheus:v2.34.0
-quay.io/kiali/kiali:v1.63
 redis:7.0.0-alpine
 sig-storage/csi-attacher:v3.4.0
 sig-storage/csi-node-driver-registrar:v2.5.1
