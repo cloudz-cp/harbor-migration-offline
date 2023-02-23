@@ -5,15 +5,11 @@ DOMAIN="v2-zcr.cloudzcp.io"
 USER=""
 PASSWORD=""
 
-clear_cache=false
-enable_download=true
-
-function login_harbor() {
-  echo "Login harbor..."
+function login() {
   echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
 }
 
-function download_targets() {
+function download_from() {
   proj=$1
 
   if [ ! -d $proj/download ]
@@ -46,7 +42,6 @@ function download_targets() {
   done < $proj/targets.txt
 }
 
-login_harbor
-download_targets "cloudzcp"
-download_targets "cloudzcp-addon"
-download_targets "cloudzcp-public"
+login
+download_from "cloudzcp"
+download_from "cloudzcp-public"

@@ -1,16 +1,15 @@
 #!/bin/zsh
 set -e
 
-DOMAIN="tta-registry.gs.cloudzcp.net"
+DOMAIN="ngs-registry.pps-poc.cloudzcp.net"
 USER=""
 PASSWORD=""
 
 function login() {
-#  echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
   echo $PASSWORD | docker login $DOMAIN -u $USER --password-stdin
 }
 
-function createProjectIfNotExist() {
+function create_project() {
   proj_name=$1
   cmd=$(curl -s -I "https://$DOMAIN/api/v2.0/projects?project_name=$proj_name" \
       -H 'accept: application/json' \
@@ -29,14 +28,13 @@ function createProjectIfNotExist() {
   fi
 }
 
-function upload() {
+function upload_to() {
   proj=$1
-  createProjectIfNotExist $proj
+  create_project $proj
   while read target
   do
     tgz=$(echo $target | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
     echo "Upload '$proj/download/$tgz' to $DOMAIN/$proj/$target"
-#    skopeo copy oci-archive:$proj/download/$tgz docker://$DOMAIN/$proj/$target
     docker image load --input $proj/download/$tgz
     docker tag $target $DOMAIN/$proj/$target
     docker push $DOMAIN/$proj/$target
@@ -44,6 +42,6 @@ function upload() {
 }
 
 login
-upload "cloudzcp"
-upload "cloudzcp-addon"
-upload "cloudzcp-public"
+upload_to "cloudzcp"
+upload_to "cloudzcp-addon"
+upload_to "cloudzcp-public"

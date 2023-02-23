@@ -8,7 +8,7 @@ PASSWORD=""
 clear_cache=false
 enable_download=true
 
-function login_harbor() {
+function login() {
   echo "Login harbor..."
   echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
 }
@@ -171,8 +171,7 @@ while true; do
 done
 
 
-login_harbor
-
+login
 for proj in "$@"
 do
   run "$proj"

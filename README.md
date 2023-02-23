@@ -5,6 +5,7 @@
 * [jq](https://stedolan.github.io/jq/download) (1.6)
 * [skopeo](https://github.com/containers/skopeo/releases) (1.10.0)
 * [helm](https://github.com/helm/helm/releases) (v3.10.3)
+* [helm cm-plugin](https://github.com/chartmuseum/helm-push/releases/tag/v0.10.3) (v0.10.3)
 
 
 ```shell

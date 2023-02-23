@@ -5,11 +5,11 @@ DOMAIN=""
 USER=""
 PASSWORD=""
 
-function loginHarbor() {
+function login() {
   echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
 }
 
-function createProjectIfNotExist() {
+function create_project() {
   proj_name=$1
   cmd=$(curl -s -I "https://$DOMAIN/api/v2.0/projects?project_name=$proj_name" \
       -H 'accept: application/json' \
@@ -28,10 +28,9 @@ function createProjectIfNotExist() {
   fi
 }
 
-function uploadArchivesByProject() {
+function upload_to() {
   proj=$1
-
-  createProjectIfNotExist $proj
+  create_project $proj
   while read target
   do
     name=$(echo $target | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
@@ -40,7 +39,7 @@ function uploadArchivesByProject() {
   done < $proj/targets.txt
 }
 
-loginHarbor
-uploadArchivesByProject "cloudzcp"
-uploadArchivesByProject "cloudzcp-public"
-uploadArchivesByProject "cloudzcp-addon"
+login
+upload_to "cloudzcp"
+upload_to "cloudzcp-public"
+upload_to "cloudzcp-addon"

@@ -5,11 +5,11 @@ DOMAIN="v2-zcr.cloudzcp.io"
 USER=""
 PASSWORD=""
 
-function loginHarbor() {
+function login() {
   echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin
 }
 
-function addHelmRepo() {
+function add_helm_repo() {
   proj=$1
   set +eo pipefail
   helm repo ls -o json | jq '.[] | .name' | sed 's/"//g' | grep -x -q "$proj"
@@ -27,13 +27,13 @@ function addHelmRepo() {
   set -eo pipefail
 }
 
-function getCharts() {
+function list_chart_from() {
   proj=$1
   cmd=$(helm search repo "$proj/" -o json)
   echo $cmd | jq ".[] | .name | sub(\"$proj/\"; \"\")" | sed 's/"//g'
 }
 
-function getVersions() {
+function get_chart_version() {
   proj=$1
   chart=$2
   cmd=$(helm search repo $proj/$chart -l -o json)
@@ -49,10 +49,10 @@ function download() {
     -o $dest
 }
 
-function downloadCharts() {
+function download_chart_from() {
   proj=$1
+  add_helm_repo "$proj"
 
-  addHelmRepo "$proj"
   if [ ! -d "$proj/download" ]
   then
     mkdir -p "$proj/download"
@@ -60,10 +60,10 @@ function downloadCharts() {
 
   if [ ! -e "$proj/targets.txt" ]
   then
-    charts=($(getCharts "$proj"))
+    charts=($(list_chart_from "$proj"))
     for c in $charts
     do
-      versions=($(getVersions $proj $c))
+      versions=($(get_chart_version $proj $c))
       for v in $versions
       do
         echo "$c-$v.tgz" >> $proj/targets.txt
@@ -78,8 +78,8 @@ function downloadCharts() {
   done < $proj/targets.txt
 }
 
-loginHarbor
-downloadCharts "cloudzcp"
-downloadCharts "cloudzcp-addon"
-downloadCharts "cloudzcp-public"
+login
+download_chart_from "cloudzcp"
+download_chart_from "cloudzcp-addon"
+download_chart_from "cloudzcp-public"
 

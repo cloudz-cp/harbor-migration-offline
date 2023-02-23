@@ -1,12 +1,9 @@
 #!/bin/zsh
-
-export KUBECONFIG=$HOME/Workspace/jodalchung/.kube/config
-
-DOMAIN=v2-zcr.cloudzcp.io
+export KUBECONFIG=
+DOMAIN="v2-zcr.cloudzcp.io"
 charts=$(helm ls -A | tail -n +2 | awk '{printf("%s,%s,%s\n", $1, $2, $9)}')
 
 cat /dev/null > collect.txt
-
 while IFS=',' read -r release namespace chart;
 do
   manifest=$(helm get manifest $release -n $namespace)
