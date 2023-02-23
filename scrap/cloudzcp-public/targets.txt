@@ -79,6 +79,7 @@ oliver006/redis_exporter:v1.27.0
 openjdk:8
 prom/prometheus:v2.34.0
 redis:7.0.0-alpine
+ssh_alpine:0.0.1
 sig-storage/csi-attacher:v3.4.0
 sig-storage/csi-node-driver-registrar:v2.5.1
 sig-storage/csi-provisioner:v3.1.0
