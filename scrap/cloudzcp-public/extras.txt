@@ -12,3 +12,6 @@ docker.io/istio/examples-bookinfo-ratings-v1:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v1:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v2:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v3:1.17.0
+docker.io/openjdk:8
+ghcr.io/kedacore/keda:2.9.3
+ghcr.io/kedacore/keda-metrics-apiserver:2.9.3
