@@ -2,6 +2,7 @@ amazon/opendistro-for-elasticsearch-kibana:1.11.0
 amazon/opendistro-for-elasticsearch:1.11.0
 appscode/kubed:v0.13.2
 argoproj/argocd:v2.4.3
+bitnami/kubectl:1.25
 bitnami/mariadb:10.3.24-debian-10-r17
 bitnami/memcached-exporter:0.9.0-debian-10-r251
 bitnami/memcached:1.6.12-debian-10-r80
@@ -63,6 +64,7 @@ kedacore/keda:2.9.3
 keycloak-register-event-listener:v2.0.0
 kiali/kiali:v1.63
 koalaman/shellcheck:v0.5.0
+lirt/velero-plugin-for-openstack:v0.4.1
 maven:3.6-jdk-11
 maven:3.6-jdk-8
 maven:3.6-openjdk-15
@@ -104,4 +106,7 @@ tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.41.0
 ubi8/ubi-minimal:latest
 unguiculus/docker-python3-phantomjs-selenium:v1
 untergeek/curator:5.7.6
+velero/velero-plugin-for-aws:v1.5.2
+velero/velero-plugin-for-csi:v0.3.2
+velero/velero:v1.10.0
 zcp-keycloak-theme-provider:v2.0.0
