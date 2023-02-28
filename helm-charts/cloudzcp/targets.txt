@@ -14,8 +14,6 @@ harbor-1.10.2.tgz
 ingress-nginx-4.5.2.tgz
 keda-2.9.4.tgz
 keycloak-7.7.1-k8s1.24.tgz
-keycloak-15.1.0.tgz
-keycloak-7.7.1.tgz
 kubed-v0.13.2.tgz
 mariadb-7.10.0.tgz
 metrics-server-3.8.3.tgz

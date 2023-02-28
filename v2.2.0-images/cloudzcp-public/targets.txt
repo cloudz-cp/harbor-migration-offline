@@ -2,7 +2,7 @@ amazon/opendistro-for-elasticsearch-kibana:1.11.0
 amazon/opendistro-for-elasticsearch:1.11.0
 appscode/kubed:v0.13.2
 argoproj/argocd:v2.4.3
-bitnami/kubectl:1.25
+bitnami/kubectl:1.24
 bitnami/mariadb:10.3.24-debian-10-r17
 bitnami/memcached-exporter:0.9.0-debian-10-r251
 bitnami/memcached:1.6.12-debian-10-r80
@@ -18,7 +18,6 @@ cortexproject/cortex:v1.11.0
 curlimages/curl:7.73.0
 defaultbackend-amd64:1.5
 dexidp/dex:v2.30.2
-ebs-csi-driver/aws-ebs-csi-driver:v1.15.0
 fluent/fluent-bit:2.0.8-debug
 fluent/fluentd-kubernetes-daemonset:v1.12.0-debian-elasticsearch7-1.0-gem-installed
 gitea/gitea:1.17.3
@@ -29,8 +28,11 @@ goharbor/harbor-exporter:v2.6.2
 goharbor/harbor-jobservice:v2.6.2
 goharbor/harbor-portal:v2.6.2
 goharbor/harbor-registryctl:v2.6.2
+goharbor/notary-server-photon:v2.6.2
+goharbor/notary-signer-photon:v2.6.2
 goharbor/redis-photon:v2.6.2
 goharbor/registry-photon:v2.6.2
+goharbor/trivy-adapter-photon:v2.6.2
 google.com/cloudsdktool/cloud-sdk:302.0.0-slim
 gradle:6.4.1-jdk11
 gradle:6.4.1-jdk14
@@ -106,7 +108,5 @@ tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.41.0
 ubi8/ubi-minimal:latest
 unguiculus/docker-python3-phantomjs-selenium:v1
 untergeek/curator:5.7.6
-velero/velero-plugin-for-aws:v1.5.2
-velero/velero-plugin-for-csi:v0.3.2
-velero/velero:v1.10.0
+velero/velero:v1.9.4
 zcp-keycloak-theme-provider:v2.0.0
