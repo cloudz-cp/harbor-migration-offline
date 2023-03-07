@@ -43,5 +43,7 @@ function download_from() {
 }
 
 login
-download_from "cloudzcp"
-download_from "cloudzcp-public"
+download_from "library"
+#download_from "cloudzcp"
+#download_from "cloudzcp-addon"
+#download_from "cloudzcp-public"

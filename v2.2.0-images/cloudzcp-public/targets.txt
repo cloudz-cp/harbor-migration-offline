@@ -12,7 +12,9 @@ bitnami/postgres-exporter:0.8.0-debian-10-r188
 bitnami/postgresql:11.9.0-debian-10-r1
 busybox
 busybox:1.27.2
+caicloud/event-exporter:v1.0.0
 chainguard/busybox:latest
+coreos/kube-state-metrics:v1.9.8
 cortex-ring:v1.0
 cortexproject/cortex:v1.11.0
 curlimages/curl:7.73.0
@@ -83,7 +85,10 @@ node:17
 node:18
 oliver006/redis_exporter:v1.27.0
 openjdk:8
+prom/blackbox-exporter:v0.23.0
 prom/prometheus:v2.34.0
+prometheus/node-exporter:v1.1.2
+prometheus/prometheus:v2.26.0
 redis:7.0.0-alpine
 sig-storage/csi-attacher:v3.4.0
 sig-storage/csi-node-driver-registrar:v2.5.1
