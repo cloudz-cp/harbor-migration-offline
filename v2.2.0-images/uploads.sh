@@ -42,6 +42,7 @@ function upload_to() {
 }
 
 login
-upload_to "cloudzcp"
-upload_to "cloudzcp-addon"
-upload_to "cloudzcp-public"
+upload_to "library"
+#upload_to "cloudzcp"
+#upload_to "cloudzcp-addon"
+#upload_to "cloudzcp-public"
