@@ -1,5 +1,6 @@
 amazon/opendistro-for-elasticsearch-kibana:1.11.0
 amazon/opendistro-for-elasticsearch:1.11.0
+kaniko-project/executor:debug
 appscode/kubed:v0.13.2
 argoproj/argocd:v2.4.3
 bitnami/kubectl:1.24
