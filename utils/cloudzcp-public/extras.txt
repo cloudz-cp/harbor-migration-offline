@@ -6,6 +6,7 @@ docker.io/istio/examples-bookinfo-ratings-v1:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v1:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v2:1.17.0
 docker.io/istio/examples-bookinfo-reviews-v3:1.17.0
+docker.io/istio/install-cni:1.17.0
 docker.io/istio/operator:1.17.0
 docker.io/istio/pilot:1.17.0
 docker.io/istio/proxyv2:1.17.0

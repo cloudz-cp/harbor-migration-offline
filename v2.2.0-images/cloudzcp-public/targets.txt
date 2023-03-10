@@ -43,6 +43,7 @@ gradle:6.4.1-jdk8
 gradle:7.3.3-jdk11
 gradle:7.3.3-jdk8
 grafana/grafana-image-renderer:latest
+grafana/grafana:9.0.1
 grafana/grafana:9.3.6
 haproxy:2.5.7
 hashicorp/consul-k8s-control-plane:1.0.2
@@ -55,6 +56,7 @@ istio/examples-bookinfo-ratings-v1:1.17.0
 istio/examples-bookinfo-reviews-v1:1.17.0
 istio/examples-bookinfo-reviews-v2:1.17.0
 istio/examples-bookinfo-reviews-v3:1.17.0
+istio/install-cni:1.17.0
 istio/operator:1.17.0
 istio/pilot:1.17.0
 istio/proxyv2:1.17.0
