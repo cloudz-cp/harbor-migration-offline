@@ -43,6 +43,7 @@ gradle:6.4.1-jdk8
 gradle:7.3.3-jdk11
 gradle:7.3.3-jdk8
 grafana/grafana-image-renderer:latest
+grafana/grafana:9.0.1
 grafana/grafana:9.3.6
 haproxy:2.5.7
 hashicorp/consul-k8s-control-plane:1.0.2
