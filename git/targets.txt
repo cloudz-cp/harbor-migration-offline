@@ -1,0 +1,7 @@
+https://github.com/cloudz-cp/zcp-v2-installation.git
+https://github.com/cloudz-cp/managed-k8s-installation.git
+https://github.com/cloudz-cp/harbor-migration-offline.git
+https://git.cloudzcp.net/cloudzcp/zcp-dashboard.git
+https://git.cloudzcp.net/cloudzcp/zcp-rule.git
+https://git.cloudzcp.net/cloudzcp/zcp-panel.git
+https://git.cloudzcp.net/cloudzcp/zcp-addon.git
