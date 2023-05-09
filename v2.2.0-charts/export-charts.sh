@@ -1,9 +1,11 @@
 #!/bin/zsh
 set -eo pipefail
 
-DOMAIN="v2-zcr.cloudzcp.io"
-USER=""
-PASSWORD=""
+if [ -z ${DOMAIN}  ] || [ -z ${USER} ] || [ -z ${PASSWORD} ]
+then
+  echo "environment variables not set"
+  exit 1
+fi
 
 function login() {
   echo $PASSWORD | skopeo login $DOMAIN -u $USER --password-stdin

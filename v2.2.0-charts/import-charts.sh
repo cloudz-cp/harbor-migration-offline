@@ -1,9 +1,11 @@
 #!/bin/zsh
 set -eo pipefail
 
-DOMAIN="ngs-registry.pps-poc.cloudzcp.net"
-USER=""
-PASSWORD=""
+if [ -z ${DOMAIN}  ] || [ -z ${USER} ] || [ -z ${PASSWORD} ]
+then
+  echo "environment variables not set"
+  exit 1
+fi
 
 function create_project() {
   proj_name=$1
