@@ -1,0 +1,11 @@
+bitnami/mongodb:4.2.8-debian-10-r7
+cicd-backend:v2.2.2
+cicd-operator:v2.2.2
+console-api:v2.2.1
+console-web:v2.2.2
+cortex-gateway:v1.0.1
+harbor-backend:v2.2.0
+zcp-argocd-backend:v2.2.0
+zcp-logging-backend:v2.2.0
+zcp-mcm-go:v2.2.1
+zcp-monitoring-backend:v2.2.1

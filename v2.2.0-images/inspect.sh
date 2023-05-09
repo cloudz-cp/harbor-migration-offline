@@ -24,17 +24,9 @@ function download_from() {
 
   while read line
   do
-    local filename=$(echo $line | awk -F":" '{gsub(/\//, "_"); printf "%s+%s.tgz\n", $1, $2}')
-    if [ -e $proj/download/$filename ]
-    then
-      echo "Already downloaded image: $filename"
-      continue
-    fi
-
-    echo "Download $DOMAIN/$proj/$line to $proj/download/$filename"
+    echo "Inspect $DOMAIN/$proj/$line"
     set +eo pipefail
-    skopeo copy -q --override-os linux --override-arch amd64 --dest-compress-format gzip \
-      docker://$DOMAIN/$proj/$line oci-archive:$proj/download/$filename:$line
+    skopeo inspect --config docker://$DOMAIN/$proj/$line
 
     if [ $? -ne 0 ]
     then

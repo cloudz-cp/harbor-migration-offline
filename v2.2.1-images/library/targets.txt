@@ -1,0 +1,2 @@
+network-multitool:latest
+skopeo:1.11.1
