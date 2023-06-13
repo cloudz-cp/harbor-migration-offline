@@ -1,12 +1,13 @@
 argo-cd-4.9.11.tgz
 cert-manager-v1.11.0.tgz
 console-api-2.2.0.tgz
-console-web-2.2.0.tgz
+console-web-2.2.4.tgz
 cortex-1.2.0.tgz
 cortex-gateway-0.1.1.tgz
 elasticsearch-curator-2.0.3.tgz
 fluent-bit-0.23.0.tgz
 fluentd-0.2.7.tgz
+fluentd-0.2.7-nodeport.tgz
 gitea-6.0.3.tgz
 grafana-6.50.7.tgz
 harbor-1.10.2.tgz
@@ -26,10 +27,10 @@ sonatype-nexus-5.2.0.tgz
 sonarqube-9.4.0.tgz
 tigera-operator-v3.24.5.tgz
 zcp-argocd-backend-2.2.0.tgz
-zcp-cicd-2.2.0.tgz
+zcp-cicd-2.2.5.tgz
 zcp-fluent-bit-2.10.1.tgz
 zcp-harbor-backend-2.2.0.tgz
 zcp-logging-backend-0.1.0.tgz
 zcp-mcm-backend-2.2.1.tgz
-zcp-monitoring-backend-2.2.0.tgz
+zcp-monitoring-backend-2.2.1.tgz
 velero-2.32.6.tgz

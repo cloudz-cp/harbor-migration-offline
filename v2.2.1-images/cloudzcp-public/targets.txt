@@ -4,6 +4,7 @@ appscode/kubed:v0.13.2
 argoproj/argocd:v2.4.3
 bitnami/kubectl:1.24
 bitnami/mariadb:10.3.24-debian-10-r17
+bitnami/mariadb:10.3.28-debian-10-r68
 bitnami/memcached-exporter:0.9.0-debian-10-r251
 bitnami/memcached:1.6.12-debian-10-r80
 bitnami/memcached:1.6.9-debian-10-r114
