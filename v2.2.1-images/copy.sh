@@ -1,21 +1,27 @@
 #!/bin/bash
 set -e
 
-if [ -z ${SRC_DOMAIN}  ] || [ -z ${SRC_USER} ] || [ -z ${SRC_PASSWORD} ]
+if [ -z ${SRC_DOMAIN} ]
 then
   echo "environment variables not set"
   exit 1
 fi
 
-if [ -z ${DST_DOMAIN}  ] || [ -z ${DST_USER} ] || [ -z ${DST_PASSWORD} ]
+if [ -z ${DST_DOMAIN} ]
 then
   echo "environment variables not set"
   exit 1
 fi
 
 function login() {
-  echo $SRC_PASSWORD | skopeo login $SRC_DOMAIN -u $SRC_USER --password-stdin
-  echo $DST_PASSWORD | skopeo login $DST_DOMAIN -u $DST_USER --password-stdin
+  if [ ! -z $SRC_PASSWORD ]
+  then
+    echo $SRC_PASSWORD | skopeo login $SRC_DOMAIN -u $SRC_USER --password-stdin
+  fi
+  if [ ! -z $DST_PASSWORD ]
+  then
+    echo $DST_PASSWORD | skopeo login $DST_DOMAIN -u $DST_USER --password-stdin
+  fi
 }
 
 function create_project() {

@@ -34,7 +34,7 @@ function download_from() {
     echo "Download $DOMAIN/$proj/$line to $proj/download/$filename"
     set +eo pipefail
     skopeo copy -q --override-os linux --override-arch amd64 --dest-compress-format gzip \
-      docker://$DOMAIN/$proj/$line oci-archive:$proj/download/$filename:$line
+      docker://$DOMAIN/$proj/$line docker-archive:$proj/download/$filename:$line
 
     if [ $? -ne 0 ]
     then
