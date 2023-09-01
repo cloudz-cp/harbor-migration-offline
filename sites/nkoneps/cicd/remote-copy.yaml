@@ -1,0 +1,43 @@
+apiVersion: tekton.dev/v1beta1
+kind: ClusterTask
+metadata:
+  name: remote-copy
+spec:
+  description: 'Copy local files to remote host use basic auth'
+  params:
+  - description: source file path
+    name: src
+    type: string
+  - description: remote host ip
+    name: host
+    type: string
+  - description: remote username
+    name: username
+    type: string
+  - description: remote password
+    name: password
+    type: string
+  - description: remote file path
+    name: dest
+    type: string
+  steps:
+  - env:
+    - name: OUTPUT_DIR
+      value: $(workspaces.output.path)
+    - name: LOCAL_PATH
+      value: $(params.src)
+    - name: REMOTE_HOST
+      value: $(params.host)
+    - name: REMOTE_USER
+      value: $(params.username)
+    - name: REMOTE_PASSWD
+      value: $(params.password)
+    - name: REMOTE_PATH
+      value: $(params.dest)
+    image: v2-zcr.cloudzcp.io/library/scp:latest
+    name: scp
+    script: |
+      sshpass -p ${REMOTE_PASSWD} scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${OUTPUT_DIR}/source/${LOCAL_PATH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
+  workspaces:
+  - description: volume for data
+    name: output

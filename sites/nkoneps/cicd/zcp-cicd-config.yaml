@@ -1,0 +1,292 @@
+apiVersion: v1
+data:
+  task-meta.yaml: |
+  tasks:
+  - name: scp
+    params:
+    - name: src
+      displayName: 'Source File Path'
+      required: true
+      type: string
+      frontType: string
+    - name: host
+      displayName: 'Remote Host IP'
+      required: true
+      type: string
+      frontType: string
+    - name: username
+      displayName: 'Remote Host Username'
+      required: true
+      type: string
+      frontType: string
+    - name: password
+      displayName: 'Remote Host Password'
+      required: true
+      type: string
+      frontType: string
+    - name: dest
+      displayName: 'Remote Host File Path'
+      required: true
+      type: string
+      frontType: string
+    workspaces:
+    - output
+  - name: npm
+    params:
+    - name: BUILDER_IMAGE
+      displayName: 'Node Version'
+      required: true
+      type: string
+      frontType: select
+      default: node:12
+      select:
+      - key: node-10
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:10
+      - key: node-11
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:11
+      - key: node-12
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:12
+      - key: node-13
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:13
+      - key: node-14
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:14
+      - key: node-15
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:15
+      - key: node-16
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:16
+      - key: node-17
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:17
+      - key: node-18
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/node:18
+    - name: ARGS
+      displayName: 'NPM task command exclude install'
+      required: false
+      type: array
+      frontType: array
+      placeholder: run build
+      default: run build
+    - name: REMOVE_CACHE
+      displayName: 'Remove cache Y/N'
+      required: false
+      type: string
+      frontType: select
+      default: N
+      select:
+      - key: Y
+        value: "true"
+      - key: N
+        value: "false"
+    - name: INCLUDE_INSTALL
+      displayName: 'Install Y/N'
+      required: true
+      type: string
+      frontType: select
+      default: Y
+      select:
+      - key: Y
+        value: "true"
+      - key: N
+        value: "false"
+    - name: PATH_CONTEXT
+      default: .
+      displayName: 'Context Path (package.json)'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_SCAN
+      displayName: SonarScanning
+      description: 'Decide whether to run sonar scan or not'
+      required: true
+      type: string
+      frontType: select
+      default: Disabled
+      placeholder: Disabled
+      select:
+      - key: Enabled
+        value: true
+      - key: Disabled
+        value: false
+    - name: SONAR_SERVER_URL
+      displayName: 'SonarQube URL'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_KEY
+      displayName: Sonar Project Key
+      description: 'Project name to communicate'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_LOGIN_TOKEN
+      displayName: Sonar Project Login Token
+      description: 'Project Login token to authentication'
+      type: string
+      required: false
+      frontType: string
+    workspaces:
+    - source
+  - name: maven
+    params:
+    - name: BUILDER_IMAGE
+      displayName: 'Jdk Version'
+      required: true
+      type: string
+      frontType: select
+      description: ''
+      default: gcr.io/cloud-builders/mvn
+      select:
+      - key: jdk-8
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/maven:3.6-jdk-8
+      - key: jdk-11
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/maven:3.6-jdk-11
+      - key: jdk-15
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/maven:3.6-openjdk-15
+      - key: jdk-16
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/maven:3.6-openjdk-16
+      - key: jdk-17
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/maven:3.6-openjdk-17
+    - name: GOALS
+      displayName: 'Maven Goals'
+      required: true
+      type: array
+      frontType: string
+      placeholder: clean package
+      default: package
+      description: 'Maven goals'
+    - name: MAVEN_MIRROR_URL
+      displayName: 'Mirror Url'
+      required: false
+      type: string
+      frontType: string
+      placeholder: 'https://repo.maven.apache.org/maven2'
+      description: 'The base URL of this mirror.'
+    - name: SONAR_SCAN
+      displayName: SonarScanning
+      description: 'Decide whether to run sonar scan or not'
+      required: true
+      type: string
+      frontType: select
+      default: Disabled
+      placeholder: Disabled
+      select:
+      - key: Enabled
+        value: true
+      - key: Disabled
+        value: false
+    - name: SONAR_SERVER_URL
+      displayName: 'SonarQube URL'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_KEY
+      displayName: Sonar Project Key
+      description: 'Project name to communicate'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_LOGIN_TOKEN
+      displayName: Sonar Project Login Token
+      description: 'Project Login token to authentication'
+      type: string
+      required: false
+      frontType: string
+    workspaces:
+    - source
+    - maven-settings
+  - name: gradle
+    params:
+    - name: BUILDER_IMAGE
+      displayName: 'Jdk Version'
+      required: true
+      type: string
+      frontType: select
+      default: gradle:6.4.1-jdk8
+      description: The image on which builds will run
+      select:
+      - key: 6.4-jdk8
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:6.4.1-jdk8
+      - key: 6.4-jdk11
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:6.4.1-jdk11
+      - key: 6.4-jdk14
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:6.4.1-jdk14
+      - key: 7.3-jdk8
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:7.3.3-jdk8
+      - key: 7.3-jdk11
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:7.3.3-jdk11
+      - key: 7.3-jdk17
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:7.3.3-jdk17
+      - key: 7.5-jdk17
+        value: v2-zcr.cloudzcp.io/cloudzcp-public/gradle:7.5.1-jdk17
+    - name: TASK
+      displayName: 'Gradle Task'
+      required: false
+      type: string
+      frontType: string
+      placeholder: buildNeeded
+      default: buildNeeded
+      description: 'gradle task to run'
+    - name: GRADLE_PROPERTIES
+      displayName: 'Gradle Properties'
+      required: false
+      type: string
+      frontType: array
+      placeholder: 'key=value'
+      description: 'These values are set into gradle.properties file.'
+      masking: true
+    - name: GRADLE_OPTS
+      displayName: 'Command line options'
+      required: false
+      type: string
+      frontType: string
+      placeholder: '-Dorg.gradle.debug=true'
+      description : 'These values are used in command line option'
+    - name: SONAR_SCAN
+      displayName: SonarScanning
+      description: 'Decide whether to run sonar scan or not'
+      required: true
+      type: string
+      frontType: select
+      default: Disabled
+      placeholder: Disabled
+      select:
+      - key: Enabled
+        value: true
+      - key: Disabled
+        value: false
+    - name: SONAR_SERVER_URL
+      displayName: 'SonarQube URL'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_KEY
+      displayName: Sonar Project Key
+      description: 'Project name to communicate'
+      required: false
+      type: string
+      frontType: string
+    - name: SONAR_PROJECT_LOGIN_TOKEN
+      displayName: Sonar Project Login Token
+      description: 'Project Login token to authentication'
+      type: string
+      required: false
+      frontType: string
+    workspaces:
+    - source
+    - gradle-home
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: zcp-cicd
+    meta.helm.sh/release-namespace: cicd
+  creationTimestamp: "2023-05-17T13:41:54Z"
+  labels:
+    app.kubernetes.io/instance: zcp-cicd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: zcp-cicd
+    app.kubernetes.io/version: v2.2.2
+    cloudzcp.io/zcp-system-admin: "yes"
+    helm.sh/chart: zcp-cicd-2.2.5
+  name: zcp-cicd-config
+  namespace: cicd
+  resourceVersion: "55763599"
+  uid: 76e97d5c-b9f6-4789-ae4b-3e0f94295cb5
