@@ -1,7 +1,0 @@
-fluent-bit-0.23.0.tgz
-fluentd-0.2.7.tgz
-ingress-nginx-4.0.17.tgz
-metrics-server-3.8.3.tgz
-prometheus-13.8.0.tgz
-prometheus-blackbox-exporter-7.5.0.tgz
-prometheus-k8s-events-exporter-0.2.0.tgz
