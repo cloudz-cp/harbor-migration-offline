@@ -1,6 +1,10 @@
 #!/bin/zsh
 set -e
 
+DOMAIN=""
+USER=""
+PASSWORD=""
+
 if [ -z ${DOMAIN}  ] || [ -z ${USER} ] || [ -z ${PASSWORD} ]
 then
   echo "environment variables not set"
